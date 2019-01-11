@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>476779cf-4edf-4cce-90bd-977c2da6dc5b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Core</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Anchor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Color.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DeltaTime.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\InvalidHashException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\MapLoadException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\MissingMapIdentifierException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Graphics\InterpolationMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Graphics\Spritebatch2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Graphics\Texture2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Graphics\VertexData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interpolation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Map.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mathf.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mathi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Range.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rectangle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Size.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Transform.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Vector2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Component.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exceptions\ComponentDependencyException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Components\ComponentList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Components\ComponentData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Components\ComponentRequirement.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Components\Instantiatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Components\UpdateAfter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Components\UpdateBefore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Entity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\EntityDomain.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\IEntityRenderer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\IEntityWorld.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Serialization\DataID.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Serialization\DataType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Serialization\EntityID.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)World\Serialization\IEntitySerializer.cs" />
+  </ItemGroup>
+</Project>

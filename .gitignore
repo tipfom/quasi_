@@ -1,0 +1,18 @@
+# Only Sourcecode
+**/bin/**
+**/obj/**
+*.sou
+*.apk
+*.exe
+*.db
+*.bak
+
+# No Userdata
+.vs/**
+*.user
+*.csproj.user
+
+# Ignore Test Results
+TestResults/*
+
+!assoc.exe
