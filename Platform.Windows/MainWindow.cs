@@ -4,6 +4,10 @@ using OpenTK.Graphics;
 using Engine;
 using OpenTK.Input;
 using Engine.UI;
+using System.Drawing;
+using System.Resources;
+using System.Reflection;
+using System.IO;
 
 namespace Windows
 {
@@ -12,7 +16,7 @@ namespace Windows
         public MainWindow()
             : base (1280, 720, GraphicsMode.Default, "Quasi", GameWindowFlags.Default, DisplayDevice.Default, 3, 0, GraphicsContextFlags.Default)
         {
-
+            Icon = new Icon(Assembly.GetExecutingAssembly().GetManifestResourceStream("Platform.Windows.icon.ico"));
         }
 
         protected override void OnResize(EventArgs e)

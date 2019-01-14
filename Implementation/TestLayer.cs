@@ -16,7 +16,7 @@ namespace Implementation
         public override void Load()
         {
             UIButton button = new UIButton(this, new UILayout(new UIMargin(.3f, .4f), UIMarginType.Absolute, dock: UIPosition.Center), "Test");
-            UIButton label = new UIButton(this, new UILayout(new UIMargin(0.1f,0.5f,0.1f,0.5f), UIMarginType.Relative, dock:UIPosition.Right|UIPosition.Bottom, anchor:UIPosition.Left|UIPosition.Top, relative:button) , "HALLO MARTIN", 0.01f, 0, Color.Red);
+            UIButton label = new UIButton(this, new UILayout(new UIMargin(0.1f,1.0f,0.1f,0.2f), UIMarginType.Absolute, dock:UIPosition.Right|UIPosition.Bottom, anchor:UIPosition.Left|UIPosition.Top, relative:button) , "HALLO MARTIN", 0.1f, 0, Color.Red);
             base.Load();
         }
 
