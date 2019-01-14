@@ -8,7 +8,7 @@ namespace Core.World
 {
     public abstract class Component
     {
-#if __ANDROID__
+#if false
         public static SerializationBinder SerializationBinder { get; } = new ComponentSerializationBinder( );
 #endif
 
@@ -51,7 +51,7 @@ namespace Core.World
             public abstract Component Create(Entity owner);
         }
 
-#if __ANDROID__
+#if false
         private class ComponentSerializationBinder : SerializationBinder {
 
             public override void BindToName(Type serializedType, out string assemblyName, out string typeName) {

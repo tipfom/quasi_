@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-#if __ANDROID__
 using System.Linq;
-using Extended.Graphics;
-using Extended.Graphics.Buffer;
-using Extended.Graphics.Programs;
+#if __ANDROID__
+using Engine;
+using Engine.Graphics;
+using Engine.Graphics.Buffer;
+using Engine.Graphics.Programs;
 using OpenTK.Graphics.ES20;
 #endif
 
@@ -66,8 +67,8 @@ namespace Core.Graphics {
             GL.ClearColor(0f, 0f, 0f, 0f);
             GL.Clear(ClearBufferMask.ColorBufferBit);
             IndexBuffer indexBuffer = new IndexBuffer(1);
-            ClientBuffer vertexBuffer = new ClientBuffer(2, 1, PrimitiveType.Quad);
-            ClientBuffer textureBuffer = new ClientBuffer(2, 1, PrimitiveType.Quad);
+            ClientBuffer vertexBuffer = new ClientBuffer(2, 1, BufferPrimitiveType.Quad);
+            ClientBuffer textureBuffer = new ClientBuffer(2, 1, BufferPrimitiveType.Quad);
             textureBuffer.Data = new[ ] { 0f, 1f, 0f, 0f, 1f, 0f, 1f, 1f };
             int position = 0;
 
@@ -94,7 +95,7 @@ namespace Core.Graphics {
             }
             FBOProgram.Program.End( );
             buffer.Unbind( );
-            Window.UpdateBackgroundColor( );
+            Engine.Window.SetBackgroundColor( );
 
             if (diposeChildren) {
                 for (int i = 0; i < children.Count; i++)
