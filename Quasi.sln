@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android", "Android\Android.csproj", "{1BDA5D2F-B306-4FD8-9E5C-E74B36848EBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Android", "Platform.Android\Platform.Android.csproj", "{1BDA5D2F-B306-4FD8-9E5C-E74B36848EBE}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Engine", "Engine\Engine.shproj", "{DDA69AF0-BAA5-4B1D-9A45-14871BA116FF}"
 EndProject
@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Test", "Core.Test\Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKit", "ToolKit\ToolKit.csproj", "{10B8D1A7-ECD8-429E-BE60-3CC0FF8D9CD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Windows", "Windows\Windows.csproj", "{8371C719-FC76-489F-8A85-D78C5709FA71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platform.Windows", "Platform.Windows\Platform.Windows.csproj", "{8371C719-FC76-489F-8A85-D78C5709FA71}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution

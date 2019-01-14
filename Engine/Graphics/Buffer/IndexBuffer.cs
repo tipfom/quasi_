@@ -32,7 +32,9 @@ namespace Engine.Graphics.Buffer {
         }
 
         ~IndexBuffer ( ) {
+#if __ANDROID__
             Dispose( );
+#endif
         }
 
         public void Bind ( ) {

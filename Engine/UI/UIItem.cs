@@ -4,9 +4,11 @@ using Core;
 using Engine.Graphics.Renderer;
 using Engine.UI.Layout;
 
-namespace Engine.UI {
-    public abstract class UIItem : IDisposable {
-        public delegate void HandleItemClick( );
+namespace Engine.UI
+{
+    public abstract class UIItem : IDisposable
+    {
+        public delegate void HandleItemClick();
         public event HandleItemClick Click;
         public event HandleItemClick Release;
         public event HandleItemClick Leave;
@@ -17,7 +19,7 @@ namespace Engine.UI {
         public readonly UILayout Layout;
 
         private bool _Visible = true;
-        public bool Visible { get { return Layer.IsAttached && _Visible; } set { if(_Visible != value) IsDirty = true; _Visible = value; } }
+        public bool Visible { get { return Layer.IsAttached && _Visible; } set { if (_Visible != value) IsDirty = true; _Visible = value; } }
 
         private int _Depth;
         public int Depth { get { return _Depth; } set { _Depth = value; IsDirty = true; } }
@@ -26,7 +28,8 @@ namespace Engine.UI {
 
         public readonly Layer Layer;
 
-        public UIItem(Layer owner, UILayout layout, int depth, bool multiclick = false) {
+        public UIItem(Layer owner, UILayout layout, int depth, bool multiclick = false)
+        {
             Layer = owner;
 
             this.multiClick = multiclick;
@@ -35,54 +38,68 @@ namespace Engine.UI {
             UIRenderer.Add(owner, this);
 
             Layout.Initialize(this);
-            Layout.UpdateRequired += ( ) => IsDirty = true;
+            Layout.UpdateRequired += () => IsDirty = true;
         }
 
-        public virtual bool HandleTouch(UIActionType actiontype, UIAction action) {
+        public static void HandleGlobalAction(UIActionType actionType, UIAction action)
+        {
+            for (int i = 0; i < UIRenderer.Current.Count; i++) {
+                UIItem item = UIRenderer.Current[i];
+                if (item.Collides(action.RelativePosition) && item.HandleAction(actionType, action)) {
+                    break;
+                }
+            }
+        }
+
+        public virtual bool HandleAction(UIActionType actiontype, UIAction action)
+        {
             switch (actiontype) {
-                case UIActionType.Begin:
-                case UIActionType.Enter:
-                    if (!Clicked || multiClick) {
-                        clickCount++;
-                        Click?.Invoke( );
-                    }
-                    break;
-                case UIActionType.End:
-                    if (Clicked) {
-                        clickCount--;
-                        if (!Clicked)
-                            Release?.Invoke( );
-                    }
-                    break;
-                case UIActionType.Leave:
-                    if (Clicked) {
-                        clickCount--;
-                        if (!Clicked)
-                            Leave?.Invoke( );
-                    }
-                    break;
+            case UIActionType.Begin:
+            case UIActionType.Enter:
+                if (!Clicked || multiClick) {
+                    clickCount++;
+                    Click?.Invoke();
+                }
+                break;
+            case UIActionType.End:
+                if (Clicked) {
+                    clickCount--;
+                    if (!Clicked)
+                        Release?.Invoke();
+                }
+                break;
+            case UIActionType.Leave:
+                if (Clicked) {
+                    clickCount--;
+                    if (!Clicked)
+                        Leave?.Invoke();
+                }
+                break;
             }
             return true;
         }
 
-        public bool Collides(Vector2 touchPosition) {
+        public bool Collides(Vector2 touchPosition)
+        {
             return Layout.Rectangle.Collides(touchPosition);
         }
 
-        public virtual void Update(DeltaTime dt) {
+        public virtual void Update(DeltaTime dt)
+        {
             if (IsDirty) {
                 if (Layout.IsDirty) {
-                    Layout.Refresh( );
+                    Layout.Refresh();
                 }
                 UIRenderer.Update(this);
                 IsDirty = false;
             }
         }
 
-        public virtual void Dispose( ) {
+        public virtual void Dispose()
+        {
             UIRenderer.Remove(this);
         }
 
-        public abstract IEnumerable<UIRenderData> ConstructVertexData( );
+        public abstract IEnumerable<UIRenderData> ConstructVertexData();
     }
 }

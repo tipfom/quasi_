@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{8371C719-FC76-489F-8A85-D78C5709FA71}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Windows</RootNamespace>
-    <AssemblyName>Windows</AssemblyName>
+    <RootNamespace>Platform.Windows</RootNamespace>
+    <AssemblyName>Platform.Windows</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -64,6 +64,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Assets\textures\blackhole.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

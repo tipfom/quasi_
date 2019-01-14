@@ -5,8 +5,10 @@ using Core;
 using Engine.Graphics.Handle;
 using OpenTK.Graphics.ES20;
 
-namespace Engine.Graphics.Buffer {
-    public class GPUBuffer : IAttributeBuffer {
+namespace Engine.Graphics.Buffer
+{
+    public class GPUBuffer : IAttributeBuffer
+    {
         public int Dimensions { get; private set; }
         public int Length { get; private set; }
         public int Bytes { get; private set; }
@@ -14,16 +16,21 @@ namespace Engine.Graphics.Buffer {
 
         private int buffer;
 
-        public GPUBuffer (int dimensions, int count, BufferPrimitiveType type, BufferUsage usage = BufferUsage.DynamicDraw) :
-            this(dimensions, count, type, null, usage) {
+        public GPUBuffer(int dimensions, int count, BufferPrimitiveType type, BufferUsage usage = BufferUsage.DynamicDraw) :
+            this(dimensions, count, type, null, usage)
+        {
 
         }
 
-        ~GPUBuffer ( ) {
+        ~GPUBuffer()
+        {
+#if __ANDROID__
             Dispose( );
+#endif
         }
 
-        public GPUBuffer (int dimensions, int count, BufferPrimitiveType type, float[ ] initialData, BufferUsage usage = BufferUsage.DynamicDraw) {
+        public GPUBuffer(int dimensions, int count, BufferPrimitiveType type, float[] initialData, BufferUsage usage = BufferUsage.DynamicDraw)
+        {
             Dimensions = dimensions;
             Length = Dimensions * count * (int)type;
             Bytes = Length * sizeof(float);
@@ -36,7 +43,8 @@ namespace Engine.Graphics.Buffer {
             GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
         }
 
-        public void Put (float[ ] data) {
+        public void Put(float[] data)
+        {
             if (data.Length == Length) {
                 GL.BindBuffer(BufferTarget.ArrayBuffer, buffer);
                 GL.BufferSubData(BufferTarget.ArrayBuffer, IntPtr.Zero, new IntPtr(Bytes), data);
@@ -48,16 +56,19 @@ namespace Engine.Graphics.Buffer {
             }
         }
 
-        public void Bind (AttributeHandle attribute) {
+        public void Bind(AttributeHandle attribute)
+        {
             Bind(attribute.Location);
         }
 
-        public void Bind (int location) {
+        public void Bind(int location)
+        {
             GL.BindBuffer(BufferTarget.ArrayBuffer, buffer);
             GL.VertexAttribPointer(location, Dimensions, VertexAttribPointerType.Float, false, Stride, IntPtr.Zero);
         }
 
-        public void Dispose ( ) {
+        public void Dispose()
+        {
             GL.DeleteBuffers(1, ref buffer);
             Dimensions = 0;
             Length = 0;

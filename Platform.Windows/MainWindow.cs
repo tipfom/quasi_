@@ -2,6 +2,8 @@
 using OpenTK;
 using OpenTK.Graphics;
 using Engine;
+using OpenTK.Input;
+using Engine.UI;
 
 namespace Windows
 {
@@ -35,6 +37,17 @@ namespace Windows
         {
             Manager.Instance.Draw();
             SwapBuffers();
+        }
+
+        protected override void OnMouseDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseDown(e);
+        }
+
+        protected override void OnMouseEnter(EventArgs e)
+        { 
+            base.OnMouseEnter(e);
+
         }
     }
 }

@@ -35,7 +35,9 @@ namespace Engine.Graphics.Buffer {
         }
 
         ~CachedGPUBuffer ( ) {
+#if __ANDROID__
             Dispose( );
+#endif
         }
 
         public void Apply ( ) {
