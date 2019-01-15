@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using Android.Views;
 using Core;
 using Engine.Graphics.Renderer;
@@ -26,6 +27,7 @@ namespace Android
                 // user touched the screen
                 if (activeTouches.Count < MAX_TOUCH_COUNT) {
                     UIAction touch = new UIAction(pointerId, new Vector2(e.GetX(pointerIndex), e.GetY(pointerIndex)));
+
                     activeTouches.Add(touch);
 
                     UIItem.HandleGlobalAction(UIActionType.Begin, touch);
