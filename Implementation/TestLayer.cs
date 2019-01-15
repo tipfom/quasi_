@@ -15,10 +15,12 @@ namespace Implementation
 
         public override void Load()
         {
-            UIButton button = new UIButton(this, new UILayout(new UIMargin(.3f, .4f), UIMarginType.Absolute, dock: UIPosition.Center), "Test");
-            UIButton label = new UIButton(this, new UILayout(new UIMargin(0.1f,1.0f,0.1f,0.2f), UIMarginType.Absolute, dock:UIPosition.Right|UIPosition.Bottom, anchor:UIPosition.Left|UIPosition.Top, relative:button) , "HALLO MARTIN", 0.1f, 0, Color.Red);
-            base.Load();
+            UIButton button = new UIButton(this, new UILayout(new UIMargin(.1f, .4f, 0.1f, 0.2f), UIMarginType.Absolute), "Test");
+            UIButton label = new UIButton(this, new UILayout(new UIMargin(.1f, 0.8f, 0.5f, 0.2f), UIMarginType.Absolute), "HALLO MARTIN", 0.05f, 0, Color.Red);
+			button.Click += () => { label.Text = "David ist dumm"; };
+			base.Load();
         }
+
 
         public override void Draw()
         {
