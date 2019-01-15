@@ -35,7 +35,7 @@ namespace Implementation.UI {
         private string _Text;
         public string Text {
             get { return _Text; }
-            set { _Text = value; lines = Text.Split('\n'); Layout.AdjustSize(MeasureText(value, charSize)); } //size setting will call requupdate
+            set { _Text = value; lines = Text.Split('\n'); Layout.Size = MeasureText(value, charSize); } //size setting will call requupdate
         }
         private string[ ] lines;
 
@@ -63,17 +63,17 @@ namespace Implementation.UI {
             Text = text;
             Color = color;
             Alignment = alignment;
-            Layout.Refresh( );
+            Layout.Update( );
         }
 
         public override IEnumerable<UIRenderData> ConstructVertexData ( ) {
             switch (Alignment) {
                 case TextAlignment.Left:
-                    return GetVertexData(lines, Alignment, Layout.Position, this.charSize, Depth, this.Color);
+                    return GetVertexData(lines, Alignment, Layout.GlobalPosition, this.charSize, Depth, this.Color);
                 case TextAlignment.Right:
-                    return GetVertexData(lines, Alignment, Layout.Position + new Vector2(Layout.Width, 0), this.charSize, Depth, this.Color);
+                    return GetVertexData(lines, Alignment, Layout.GlobalPosition + new Vector2(Layout.Size.X, 0), this.charSize, Depth, this.Color);
                 case TextAlignment.Center:
-                    return GetVertexData(lines, Alignment, Layout.Position + new Vector2(Layout.Width * 0.5f, 0), this.charSize, Depth, this.Color);
+                    return GetVertexData(lines, Alignment, Layout.GlobalPosition + new Vector2(Layout.Size.X * 0.5f, 0), this.charSize, Depth, this.Color);
                 default:
                     return null;
             }

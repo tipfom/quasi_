@@ -36,12 +36,12 @@ namespace Implementation.UI {
 
         public override IEnumerable<UIRenderData> ConstructVertexData( ) {
             string textureDomain = "btn_" + (Clicked ? "p" : "i");
-            float w = EDGE_WIDTH_HEIGHT_RATIO * Layout.Height;
-            yield return new UIRenderData(UIRectangle.GetVerticies(Layout.X, Layout.Y, w, Layout.Height), textureDomain + "l", Color, Depth);
-            yield return new UIRenderData(UIRectangle.GetVerticies(Layout.X + w, Layout.Y, Layout.Width - 2 * w, Layout.Height), textureDomain + "c", Color, Depth);
-            yield return new UIRenderData(UIRectangle.GetVerticies(Layout.X + Layout .Width- w, Layout.Y, w, Layout.Height), textureDomain + "r", Color, Depth);
+            float w = EDGE_WIDTH_HEIGHT_RATIO * Layout.Size.Y;
+            yield return new UIRenderData(UIRectangle.GetVerticies(Layout.GlobalPosition.X, Layout.GlobalPosition.Y, w, Layout.Size.Y), textureDomain + "l", Color, Depth);
+            yield return new UIRenderData(UIRectangle.GetVerticies(Layout.GlobalPosition.X + w, Layout.GlobalPosition.Y, Layout.Size.X - 2 * w, Layout.Size.Y), textureDomain + "c", Color, Depth);
+            yield return new UIRenderData(UIRectangle.GetVerticies(Layout.GlobalPosition.X + Layout.Size.X- w, Layout.GlobalPosition.Y, w, Layout.Size.Y), textureDomain + "r", Color, Depth);
 
-            Vector2 textPosition = new Vector2(Layout.X + Layout.Width* 0.5f, Layout.Y - (Layout.Height - lines.Length * charSize) * 0.5f);
+            Vector2 textPosition = new Vector2(Layout.GlobalPosition.X + Layout.Size.X* 0.5f, Layout.GlobalPosition.Y - (Layout.Size.Y- lines.Length * charSize) * 0.5f);
 
             foreach (UIRenderData d in UILabel.GetVertexData(new string[ ] { Text }, UILabel.TextAlignment.Center, textPosition, charSize, Depth, Color.White)) {
                 yield return d;

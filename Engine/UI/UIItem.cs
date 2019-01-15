@@ -37,8 +37,7 @@ namespace Engine.UI
             this.Layout = layout;
             UIRenderer.Add(owner, this);
 
-            Layout.Initialize(this);
-            Layout.UpdateRequired += () => IsDirty = true;
+            Layout.Init(this);
         }
 
         public static void HandleGlobalAction(UIActionType actionType, UIAction action)
@@ -81,14 +80,14 @@ namespace Engine.UI
 
         public bool Collides(Vector2 touchPosition)
         {
-            return Layout.Rectangle.Collides(touchPosition);
+            return Layout.IsInside(touchPosition);
         }
 
         public virtual void Update(DeltaTime dt)
         {
-            if (IsDirty) {
+            if (IsDirty || Layout.IsDirty) {
                 if (Layout.IsDirty) {
-                    Layout.Refresh();
+                    Layout.Update();
                 }
                 UIRenderer.Update(this);
                 IsDirty = false;

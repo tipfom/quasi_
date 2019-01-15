@@ -8,5 +8,10 @@ namespace Engine.UI.Layout {
         Right = 1 << 2,
         Top = 1 << 3,
         Bottom = 1 << 4,
+
+        TopLeft = Top|Left,
+        TopRight = Top|Right,
+        BottomLeft = Bottom|Left,
+        BottomRight = Bottom|Right,
     }
 }

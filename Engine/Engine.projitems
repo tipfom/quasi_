@@ -39,7 +39,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)UI\Layout\UIDepths.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Layout\UILayout.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Layout\UIMargin.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UI\Layout\UIMarginType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Layout\UIPosition.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\Layout\UIRectangle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UI\UIAction.cs" />
