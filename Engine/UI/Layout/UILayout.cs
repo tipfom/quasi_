@@ -20,6 +20,8 @@ namespace Engine.UI.Layout
             REFERENCE_SIZE = new Vector2(2 * Window.Ratio, 2);
         }
 
+        public event Action<UIItem> Changed;
+
         public Vector2 GlobalPosition;
 
         private UIPosition _Anchor;
@@ -50,6 +52,12 @@ namespace Engine.UI.Layout
             _Size = size;
             _AnchorOffset = anchorOffset;
             _Relative = relative;
+
+            if (relative != null) {
+                relative.Layout.Changed += CheckChange;
+            } else {
+                Window.Changed += () => CheckChange(null);
+            }
         }
 
         public void Init(UIItem sender)
@@ -58,13 +66,18 @@ namespace Engine.UI.Layout
             Update();
         }
 
+        private void CheckChange(UIItem sender)
+        {
+            if (sender == _Relative)
+                IsDirty = true;
+        }
+
         public void Update()
         {
             IsDirty = false;
             Vector2 dockPosition = _Relative?.Layout.GlobalPosition ?? REFERENCE_POSITION;
             Vector2 dockSize = _Relative?.Layout.Size ?? REFERENCE_SIZE;
 
-            //dockPosition.X -= dockSize.X / 2f;    
             if ((_Dock & UIPosition.Right) == UIPosition.Right) {
                 dockPosition.X += dockSize.X;
             } else if ((_Dock & UIPosition.Left) != UIPosition.Left) {
@@ -74,7 +87,6 @@ namespace Engine.UI.Layout
                 dockPosition.Y -= dockSize.Y;
             } else if ((_Dock & UIPosition.Top) != UIPosition.Top) {
                 dockPosition.Y -= dockSize.Y / 2;
-
             }
 
             if ((_Anchor & UIPosition.Right) == UIPosition.Right) {
@@ -93,6 +105,7 @@ namespace Engine.UI.Layout
             }
 
             GlobalPosition = dockPosition;
+            Changed?.Invoke(item);
         }
 
         private void UpdateVerticies()
