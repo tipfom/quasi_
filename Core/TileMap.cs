@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using Core.World.Serialization;
 
 namespace Core {
-    public class Map {
+    public class TileMap {
         public const int TIME_BETWEEN_TICKS = 1000 / 2;
         public const int TILE_PXL_SIZE = 18;
         public static byte[ ] HEADER { get; } = { 133, 007, 042, 077, 064, 080 };
@@ -38,7 +38,7 @@ namespace Core {
         private int nextTickTime;
         private Queue<Entity> removedEntities = new Queue<Entity>( );
 
-        public Map(Size size, string creator, string name) {
+        public TileMap(Size size, string creator, string name) {
             Size = size;
             Data = new int[size.Width, size.Height, 3];
             Creator = creator;
@@ -47,11 +47,11 @@ namespace Core {
             Entities = new List<Entity>( );
         }
 
-        public Map(Size size) : this(size, null, null) {
+        public TileMap(Size size) : this(size, null, null) {
 
         }
 
-        public Map(Stream input, IEntitySerializer serializer) {
+        public TileMap(Stream input, IEntitySerializer serializer) {
             using (BinaryReader reader = new BinaryReader(input, Encoding.UTF8, false)) {
                 // check for header
                 if (!reader.ReadBytes(HEADER.Length).SequenceEqual(HEADER))
@@ -627,7 +627,7 @@ namespace Core {
                             break;
                     }
                 }
-                serializer.Instantiate(entityID, data, position, this as IEntityWorld);
+                //serializer.Instantiate(entityID, data, position, this as IEntityWorld);
             }
         }
 

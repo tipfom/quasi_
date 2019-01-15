@@ -21,7 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Graphics\Texture2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Graphics\VertexData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interpolation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Map.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TileMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mathf.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mathi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Range.cs" />
